@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/globe_bg"
+        android:orientation="vertical">
+    <include layout="@layout/lay_actionbar_main"
+             android:id="@+id/actionBar_main"/>
+
+    <RelativeLayout
+            android:layout_marginTop="5dp"
+            android:id="@+id/lay_setting_logout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/white">
+        <android.support.v4.widget.SwipeRefreshLayout
+                android:id="@+id/sw"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            <WebView
+                    android:id="@+id/webview0"
+                    android:background="#f1f1f1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+        </android.support.v4.widget.SwipeRefreshLayout>
+        <LinearLayout
+                android:background="@color/globe_read"
+                android:gravity="center_vertical"
+                android:layout_alignParentBottom="true"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+            <TextView
+                    android:visibility="gone"
+                    android:gravity="center"
+                    android:id="@+id/copy"
+                    android:layout_weight="1"
+                    android:textSize="17sp"
+                    android:textColor="@color/white"
+                    android:background="@color/globe_blue"
+                    android:text="复制淘口令"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"/>
+            <TextView
+                    android:gravity="center"
+                    android:id="@+id/go_buy"
+                    android:layout_weight="1"
+                    android:textSize="17sp"
+                    android:textColor="@color/white"
+                    android:text="还可以!去天猫细看"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"/>
+            <ImageView
+                    android:layout_marginRight="15dp"
+                    android:src="@mipmap/arr_right"
+                    android:layout_width="15dp"
+                    android:layout_height="20dp"/>
+
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>
