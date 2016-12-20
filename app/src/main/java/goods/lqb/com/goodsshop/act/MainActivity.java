@@ -1,11 +1,16 @@
 package goods.lqb.com.goodsshop.act;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.view.ViewPager;
-import android.os.Bundle;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import goods.lqb.com.goodsshop.R;
 import goods.lqb.com.goodsshop.base.Constant;
 import goods.lqb.com.goodsshop.base.MhttpUrls;
@@ -15,19 +20,17 @@ import goods.lqb.com.goodsshop.comutils.JavaBeanHelper;
 import goods.lqb.com.goodsshop.fragment.RecommendFrag;
 import goods.lqb.com.goodsshop.wedige.slidetablayout.SlidingTabLayout;
 import goods.lqb.com.goodsshop.wedige.slidetablayout.TabViewPagerAdapter;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 public class MainActivity extends BaseActionBarAct implements RecommendFrag.OnFragmentInteractionListener, OkHttpHelper.OkHttpRespon {
 
-    private final  int VERSION_SUCC=10023;
-    private final int VERSION_FAIL=10123;
+    private final int VERSION_SUCC = 10023;
+    private final int VERSION_FAIL = 10123;
     private Dialog searcDialog;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       // setContentView(getLayoutId());
+        // setContentView(getLayoutId());
         setTitleMSG("好购");
         setRightDarw(R.mipmap.search_icon);
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
@@ -70,7 +73,7 @@ public class MainActivity extends BaseActionBarAct implements RecommendFrag.OnFr
 
     @Override
     public void netSucc(JSONObject json, int succTag) {
-        switch (succTag){
+        switch (succTag) {
             case VERSION_SUCC:
                 dealUpdate(json);
         }
@@ -78,31 +81,33 @@ public class MainActivity extends BaseActionBarAct implements RecommendFrag.OnFr
 
     //检测升级
     private void dealUpdate(JSONObject json) {
-        int res= JavaBeanHelper.getRes(json);
-        if (res==1){
-            JSONObject object=JavaBeanHelper.getObj(json);
-            String tip=object.optString("ver_desc");
-            int isFocus=object.optInt("is_force");
-            Constant.down_url=MhttpUrls.HTTP_HEAD+object.optString("url");
+        int res = JavaBeanHelper.getRes(json);
+        if (res == 1) {
+            JSONObject object = JavaBeanHelper.getObj(json);
+            String tip = object.optString("ver_desc");
+            int isFocus = object.optInt("is_force");
+            Constant.down_url = MhttpUrls.HTTP_HEAD + object.optString("url");
             showUadateDialog(tip, isFocus == 1);
         }
     }
 
     @Override
     public void netFail(int rcode, String resData, int failTag) {
-      //  System.out.println(resData);
+        //  System.out.println(resData);
     }
 
     @Override
     public int getLayoutId() {
         return R.layout.activity_main;
     }
+
     @Override
     public void onLeftClick() {
     }
+
     @Override
     public void onRightClick() {
-        Intent intent=new Intent(this,SearchGoogsAct.class);
+        Intent intent = new Intent(this, SearchGoogsAct.class);
         startActivity(intent);
     }
 
@@ -125,4 +130,9 @@ public class MainActivity extends BaseActionBarAct implements RecommendFrag.OnFr
 //            }
 //        });
 //    }
+
+    public static void start(Context context) {
+        Intent starter = new Intent(context, MainActivity.class);
+        context.startActivity(starter);
+    }
 }
