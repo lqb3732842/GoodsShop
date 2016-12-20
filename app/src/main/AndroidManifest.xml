@@ -33,6 +33,11 @@
                 android:theme="@style/AppTheme.NoActionBar"
                 android:screenOrientation="portrait"
                 android:name=".act.MainActivity">
+        </activity>
+        <activity
+                android:theme="@style/AppTheme.NoActionBar"
+                android:screenOrientation="portrait"
+                android:name=".act.LoadingActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
